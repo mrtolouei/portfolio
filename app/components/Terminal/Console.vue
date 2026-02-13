@@ -4,9 +4,18 @@
       class="bg-black text-gray-100 font-console text-sm p-4 h-full overflow-y-auto"
       @click="focusInput"
   >
-    <div class="whitespace-pre-wrap mb-5 flex flex-col">
-      <div></div>
-      <div>Type 'help' to view a list of available commands.</div>
+    <div class="whitespace-pre-wrap space-y-3 mb-3 flex flex-col">
+      <div class="text-green-400">
+{{`
+██   ██ ███████ ██      ██       ██████
+██   ██ ██      ██      ██      ██    ██
+███████ █████   ██      ██      ██    ██
+██   ██ ██      ██      ██      ██    ██
+██   ██ ███████ ███████ ███████  ██████
+`}}
+      </div>
+      <div class="text-green-400">Welcome to Mr.Tolouei Portfolio.</div>
+      <div>Type '?' or 'help' to view a list of available commands.</div>
     </div>
     <div
         v-for="(item, index) in history"
