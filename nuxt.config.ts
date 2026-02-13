@@ -4,6 +4,9 @@ export default defineNuxtConfig({
     devtools: { enabled: false },
     ssr: false,
     modules: ['@nuxtjs/tailwindcss'],
+    nitro: {
+        preset: 'static'
+    },
     app: {
         head: {
             link: [
