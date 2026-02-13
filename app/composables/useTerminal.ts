@@ -38,6 +38,22 @@ export const useTerminal = () => {
         })
     }
 
+    const handleKeydown = (e: KeyboardEvent) => {
+        const isCmdOrCtrl = e.metaKey || e.ctrlKey
+        if (isCmdOrCtrl && e.key.toLowerCase() === 'k') {
+            e.preventDefault()
+            clear()
+        }
+    }
+
+    onMounted(() => {
+        window.addEventListener('keydown', handleKeydown)
+    })
+
+    onUnmounted(() => {
+        window.removeEventListener('keydown', handleKeydown)
+    })
+
     return {
         input,
         history,
