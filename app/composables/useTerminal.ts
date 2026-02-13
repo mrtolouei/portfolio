@@ -1,6 +1,8 @@
+const startTime = Date.now()
 export const useTerminal = () => {
     const input = ref('')
     const history = ref<{type:string; content:string}[]>([])
+    const isRunning = ref(false)
 
     const addOutput = (text:string) => {
         history.value.push({type: 'output', content: text})
@@ -11,10 +13,12 @@ export const useTerminal = () => {
     const clear = () => {
         history.value = []
     }
-    const runCommand = () => {
+    const runCommand = async () => {
         const raw = input.value.trim()
         if (!raw) return
         addCommand(raw)
+        input.value = ''
+        isRunning.value = true
         const [name, ...args] = raw.split(' ')
         if (!name) {
             addOutput('Invalid command')
@@ -24,12 +28,18 @@ export const useTerminal = () => {
         if (!cmd) {
             addOutput(`Command not found: ${name}`)
         } else {
-            cmd.execute(args, { addOutput, clear })
+            try {
+                await cmd.execute(args, { addOutput, clear })
+            } catch (err: any) {
+                addOutput(`Error: ${err.message || err}`)
+            }
         }
-        input.value = ''
+        isRunning.value = false
         scrollToBottom()
     }
+
     const terminalRef = ref<HTMLElement | null>(null)
+
     const scrollToBottom = () => {
         nextTick(() => {
             if (terminalRef.value) {
@@ -58,6 +68,7 @@ export const useTerminal = () => {
         input,
         history,
         runCommand,
-        terminalRef
+        terminalRef,
+        isRunning
     }
 }

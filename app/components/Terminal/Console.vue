@@ -30,7 +30,7 @@
         <div class="my-2" v-html="item.content"></div>
       </div>
     </div>
-    <div class="flex">
+    <div class="flex" v-if="!isRunning">
       <span class="text-gray-500">visitor@portfolio:~$</span>
       <input
           ref="inputRef"
@@ -43,10 +43,16 @@
   </div>
 </template>
 <script setup lang="ts">
-const { input, history, runCommand, terminalRef } = useTerminal()
+const { input, history, runCommand, terminalRef, isRunning } = useTerminal()
 
 const inputRef = ref<HTMLInputElement | null>(null)
 function focusInput() {
   inputRef.value?.focus()
 }
+watch(isRunning, async (running) => {
+  if (!running) {
+    await nextTick()
+    focusInput()
+  }
+})
 </script>

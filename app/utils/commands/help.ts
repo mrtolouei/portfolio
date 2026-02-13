@@ -14,11 +14,13 @@ export const help: Command = {
             formatCommand('whoami', 'Show current user'),
             formatCommand('pwd', 'Print working directory'),
             formatCommand('sudo', 'Execute command as admin (if available)'),
+            formatCommand('date', 'Show current date and time'),
+            formatCommand('ip', 'Show your public IP and location info'),
+            formatCommand('ping', 'Ping a domain or IP address and measure response time'),
+            formatCommand('weather', 'Show current weather for your location'),
+            formatCommand('uptime', 'Show how long the terminal has been running'),
             formatCommand('help', 'Show this help message'),
             formatCommand('clear', 'Clear terminal output'),
-            '',
-            'Tools:',
-            formatCommand('date', 'Show current date and time'),
         ]
 
         ctx.addOutput(lines.join('\n'))

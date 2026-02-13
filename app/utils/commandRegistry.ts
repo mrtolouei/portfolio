@@ -8,6 +8,10 @@ import {pwd} from "~/utils/commands/pwd";
 import {whoami} from "~/utils/commands/whoami";
 import {sudo} from "~/utils/commands/sudo";
 import {experiences} from "~/utils/commands/experiences";
+import {ip} from "~/utils/commands/ip";
+import {ping} from "~/utils/commands/ping";
+import {weather} from "~/utils/commands/weather";
+import {uptime} from "~/utils/commands/uptime";
 
 export const commands: Record<string, Command> = {
     help,
@@ -20,4 +24,8 @@ export const commands: Record<string, Command> = {
     about,
     skills,
     experiences,
+    ip,
+    ping,
+    weather,
+    uptime
 }
