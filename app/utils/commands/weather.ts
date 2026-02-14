@@ -7,9 +7,13 @@ export const weather: Command = {
     execute: async (_args, ctx: CommandContext) => {
         try {
             ctx.addOutput("Fetching weather for your location…")
-            const geoRes = await fetch("https://ipapi.co/json/")
-            if (!geoRes.ok) throw new Error("Failed to get location info")
-            const geoData = await geoRes.json()
+            const getIpRequest = await fetch("https://api.ipify.org/?format=json")
+            if (!getIpRequest.ok) throw new Error("Failed to fetch IP info")
+            const ipData = await getIpRequest.json()
+            const getIpInformation = await fetch(`https://ipapi.co/${ipData.ip}/json/`)
+            if (!getIpInformation.ok) throw new Error("Failed to fetch IP info")
+            const geoData = await getIpInformation.json()
+
             const lat = geoData.latitude
             const lon = geoData.longitude
             const city = geoData.city

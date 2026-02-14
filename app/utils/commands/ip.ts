@@ -9,10 +9,12 @@ export const ip: Command = {
         ctx.addOutput("Fetching IP information ...")
 
         try {
-            const res = await fetch("https://ipapi.co/json/")
-            if (!res.ok) throw new Error("Failed to fetch IP info")
-
-            const data = await res.json()
+            const getIpRequest = await fetch("https://api.ipify.org/?format=json")
+            if (!getIpRequest.ok) throw new Error("Failed to fetch IP info")
+            const ipData = await getIpRequest.json()
+            const getIpInformation = await fetch(`https://ipapi.co/${ipData.ip}/json/`)
+            if (!getIpInformation.ok) throw new Error("Failed to fetch IP info")
+            const data = await getIpInformation.json()
 
             ctx.addOutput(`
 IP Address : ${data.ip}
@@ -25,7 +27,7 @@ Timezone   : ${data.timezone}
             `)
 
         } catch (err: any) {
-            ctx.addOutput(`Failed to get IP info: ${err.message || err}`)
+            ctx.addOutput(`❌ Failed to get IP info: ${err.message || err}`)
         }
     },
 }
