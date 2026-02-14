@@ -25,6 +25,7 @@ export const help: Command = {
             formatCommand('history', 'Show command history (optionally limit the number of entries)'),
             formatCommand('help', 'Show this help message'),
             formatCommand('clear', 'Clear terminal output'),
+            formatCommand('shutdown', 'Shutdown terminal'),
         ]
 
         ctx.addOutput(lines.join('\n'))

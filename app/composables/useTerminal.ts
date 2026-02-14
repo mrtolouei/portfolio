@@ -1,15 +1,18 @@
 const startTime = Date.now()
 export const useTerminal = () => {
     const input = ref('')
-    const history = ref<{type:string; content:string}[]>([])
+    const history = ref<{ type: string; content: string }[]>([])
     const isRunning = ref(false)
     const suggestion = ref('')
     const historyIndex = ref(-1)
-
-    const addOutput = (text:string) => {
+    const isShuttingDown = ref(false)
+    const shutdownMessages = ref<string[]>([])
+    const showRestartPrompt = ref(false)
+    const showFakeProgress = ref(false)
+    const addOutput = (text: string) => {
         history.value.push({type: 'output', content: text})
     }
-    const addCommand = (text:string) => {
+    const addCommand = (text: string) => {
         history.value.push({type: 'command', content: text})
     }
     const clear = () => {
@@ -46,7 +49,12 @@ export const useTerminal = () => {
             addOutput(`Command not found: ${name}`)
         } else {
             try {
-                await cmd.execute(args, { addOutput, clear, history: history.value })
+                await cmd.execute(args, {
+                    addOutput,
+                    clear,
+                    history: history.value,
+                    shutdown: runShutdown
+                })
             } catch (err: any) {
                 addOutput(`Error: ${err.message || err}`)
             }
@@ -86,6 +94,46 @@ export const useTerminal = () => {
         }
     }
 
+    const runShutdown = async () => {
+        isShuttingDown.value = true
+        showRestartPrompt.value = false
+        clear()
+
+        const messages = [
+            '[ok] Stopping Network Manager...',
+            '[ok] Stopping User Sessions...',
+            '[ok] Terminating background services...',
+            '[ok] Stopping System Logging...',
+            '[ok] Saving system clock...',
+            '[ok] Powering off...'
+        ]
+
+        for (const msg of messages) {
+            shutdownMessages.value.push(msg)
+            await new Promise(r => setTimeout(r, 700))
+        }
+        shutdownMessages.value = []
+        await new Promise(r => setTimeout(r, 500))
+        showRestartPrompt.value = true
+    }
+
+    const restartTerminal = async () => {
+        showRestartPrompt.value = false
+        showFakeProgress.value = true
+        shutdownMessages.value = []
+
+        const total = 20
+        for (let i = 0; i <= total; i++) {
+            shutdownMessages.value = [`Loading system:\n[${'='.repeat(i * 2)}${' '.repeat(total * 2 - i * 2)}] ${i * 5}%`]
+            await new Promise(r => setTimeout(r, 100))
+        }
+
+        showFakeProgress.value = false
+        isShuttingDown.value = false
+        shutdownMessages.value = []
+        clear()
+    }
+
     const terminalRef = ref<HTMLElement | null>(null)
 
     const scrollToBottom = () => {
@@ -101,6 +149,10 @@ export const useTerminal = () => {
         if (isCmdOrCtrl && e.key.toLowerCase() === 'k') {
             e.preventDefault()
             clear()
+        }
+        if (isShuttingDown.value && showRestartPrompt.value && e.key === 'Enter') {
+            e.preventDefault()
+            restartTerminal()
         }
     }
 
@@ -120,6 +172,12 @@ export const useTerminal = () => {
         isRunning,
         autocomplete,
         suggestion,
-        navigateHistory
+        navigateHistory,
+        isShuttingDown,
+        shutdownMessages,
+        showRestartPrompt,
+        showFakeProgress,
+        runShutdown,
+        restartTerminal,
     }
 }
