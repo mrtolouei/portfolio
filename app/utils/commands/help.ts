@@ -9,6 +9,8 @@ export const help: Command = {
             formatCommand('about', 'Show information about me'),
             formatCommand('skills', 'List technical skills'),
             formatCommand('experiences', 'Show work experiences'),
+            formatCommand('contact', 'Get in touch — view email and social links'),
+            formatCommand('cv', 'Download my resume (PDF)'),
             '',
             'System:',
             formatCommand('whoami', 'Show current user'),
@@ -19,6 +21,8 @@ export const help: Command = {
             formatCommand('ping', 'Ping a domain or IP address and measure response time'),
             formatCommand('weather', 'Show current weather for your location'),
             formatCommand('uptime', 'Show how long the terminal has been running'),
+            formatCommand('echo', 'Print text to the terminal'),
+            formatCommand('history', 'Show command history (optionally limit the number of entries)'),
             formatCommand('help', 'Show this help message'),
             formatCommand('clear', 'Clear terminal output'),
         ]

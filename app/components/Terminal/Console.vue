@@ -36,14 +36,20 @@
           ref="inputRef"
           v-model="input"
           @keydown.enter.prevent="runCommand"
+          @keydown.tab.prevent="autocomplete"
+          @keydown.up.prevent="navigateHistory('up')"
+          @keydown.down.prevent="navigateHistory('down')"
           class="bg-transparent outline-none flex-1 ml-2"
           autofocus
       />
     </div>
+    <div v-if="suggestion" class="text-gray-600 text-xs flex italic">
+      Suggestion: {{ suggestion }}
+    </div>
   </div>
 </template>
 <script setup lang="ts">
-const { input, history, runCommand, terminalRef, isRunning } = useTerminal()
+const { input, history, runCommand, terminalRef, isRunning, autocomplete, suggestion, navigateHistory } = useTerminal()
 
 const inputRef = ref<HTMLInputElement | null>(null)
 function focusInput() {

@@ -12,6 +12,10 @@ import {ip} from "~/utils/commands/ip";
 import {ping} from "~/utils/commands/ping";
 import {weather} from "~/utils/commands/weather";
 import {uptime} from "~/utils/commands/uptime";
+import {contact} from "~/utils/commands/contact";
+import {cv} from "~/utils/commands/cv";
+import {echo} from "~/utils/commands/echo";
+import {history} from "~/utils/commands/history";
 
 export const commands: Record<string, Command> = {
     help,
@@ -27,5 +31,11 @@ export const commands: Record<string, Command> = {
     ip,
     ping,
     weather,
-    uptime
+    uptime,
+    contact,
+    cv,
+    echo,
+    history,
 }
+
+export const commandNames = Object.keys(commands)
