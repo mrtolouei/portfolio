@@ -18,6 +18,8 @@ import {echo} from "~/utils/commands/echo";
 import {history} from "~/utils/commands/history";
 import {shutdown} from "~/utils/commands/shutdown";
 import {github} from "~/utils/commands/github";
+import {quote} from "~/utils/commands/quote";
+import {ascii} from "~/utils/commands/ascii";
 
 export const commands: Record<string, Command> = {
     help,
@@ -40,6 +42,8 @@ export const commands: Record<string, Command> = {
     history,
     shutdown,
     github,
+    quote,
+    ascii,
 }
 
 export const commandNames = Object.keys(commands)
