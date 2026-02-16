@@ -7,27 +7,26 @@ export const help: Command = {
         const lines = [
             'Portfolio:',
             formatCommand('about', 'Show information about me'),
-            formatCommand('skills', 'List technical skills'),
-            formatCommand('experiences', 'Show work experiences'),
             formatCommand('contact', 'Get in touch — view email and social links'),
             formatCommand('cv', 'Download my resume (PDF)'),
+            formatCommand('experiences', 'Show work experiences'),
+            formatCommand('skills', 'List technical skills'),
             '',
             'System:',
-            formatCommand('whoami', 'Show current user'),
-            formatCommand('pwd', 'Print working directory'),
-            formatCommand('sudo', 'Execute command as admin (if available)'),
+            formatCommand('clear', 'Clear terminal output'),
             formatCommand('date', 'Show current date and time'),
+            formatCommand('echo', 'Print text to the terminal'),
+            formatCommand('help', 'Show this help message'),
+            formatCommand('history', 'Show command history (optionally limit the number of entries)'),
             formatCommand('ip', 'Show your public IP and location info'),
             formatCommand('ping', 'Ping a domain or IP address and measure response time'),
-            formatCommand('weather', 'Show current weather for your location'),
-            formatCommand('uptime', 'Show how long the terminal has been running'),
-            formatCommand('echo', 'Print text to the terminal'),
-            formatCommand('history', 'Show command history (optionally limit the number of entries)'),
-            formatCommand('help', 'Show this help message'),
-            formatCommand('clear', 'Clear terminal output'),
+            formatCommand('pwd', 'Print working directory'),
             formatCommand('shutdown', 'Shutdown terminal'),
+            formatCommand('sudo', 'Execute command as admin (if available)'),
+            formatCommand('uptime', 'Show how long the terminal has been running'),
+            formatCommand('weather', 'Show current weather for your location'),
+            formatCommand('whoami', 'Show current user'),
         ]
-
         ctx.addOutput(lines.join('\n'))
     }
 }
