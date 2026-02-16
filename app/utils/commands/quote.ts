@@ -52,12 +52,25 @@ const quotes = [
     { text: "Software is like entropy: It is difficult to grasp, weighs nothing, and obeys the Second Law of Thermodynamics.", author: "Norman Augustine" },
 ];
 
+const recentIndexes: number[] = [];
+const MAX_RECENT = 5;
+
 export const quote: Command = {
     name: 'quote',
     description: 'Show a random programming quote',
     execute(args, ctx) {
-        const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-        if (!randomQuote) return;
-        ctx.addOutput(`“${randomQuote.text}” — ${randomQuote.author}`);
+        let index: number;
+        let attempts = 0;
+        do {
+            index = Math.floor(Math.random() * quotes.length);
+            attempts++;
+        } while (recentIndexes.includes(index) && attempts < 10);
+        recentIndexes.push(index);
+        if (recentIndexes.length > MAX_RECENT) {
+            recentIndexes.shift();
+        }
+        const q = quotes[index];
+        if(!q) return ;
+        ctx.addOutput(`“${q.text}” — ${q.author}`);
     }
 }
