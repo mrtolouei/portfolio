@@ -8,7 +8,7 @@ export const ascii: Command = {
     execute(args, ctx) {
         const text = args.join(" ").trim();
         if (!text) {
-            ctx.addOutput('Usage: ascii "text"');
+            ctx.addOutput('Usage: ascii &lt;text&gt;')
             return;
         }
         if (text.length > 20) {

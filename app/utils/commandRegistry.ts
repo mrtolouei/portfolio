@@ -20,6 +20,9 @@ import {shutdown} from "~/utils/commands/shutdown";
 import {github} from "~/utils/commands/github";
 import {quote} from "~/utils/commands/quote";
 import {ascii} from "~/utils/commands/ascii";
+import {uppercase} from "~/utils/commands/uppercase";
+import {lowercase} from "~/utils/commands/lowercase";
+import {capitalize} from "~/utils/commands/capitalize";
 
 export const commands: Record<string, Command> = {
     help,
@@ -44,6 +47,9 @@ export const commands: Record<string, Command> = {
     github,
     quote,
     ascii,
+    uppercase,
+    lowercase,
+    capitalize,
 }
 
 export const commandNames = Object.keys(commands)
