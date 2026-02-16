@@ -1,3 +1,5 @@
+import {playSound} from "~/utils/playSound";
+
 const startTime = Date.now()
 export const useTerminal = () => {
     const input = ref('')
@@ -112,6 +114,7 @@ export const useTerminal = () => {
             shutdownMessages.value.push(msg)
             await new Promise(r => setTimeout(r, 700))
         }
+        playSound('beep1.mp3')
         shutdownMessages.value = []
         await new Promise(r => setTimeout(r, 500))
         showRestartPrompt.value = true
@@ -127,7 +130,7 @@ export const useTerminal = () => {
             shutdownMessages.value = [`Loading system:\n[${'='.repeat(i * 2)}${' '.repeat(total * 2 - i * 2)}] ${i * 5}%`]
             await new Promise(r => setTimeout(r, 100))
         }
-
+        playSound('drop.mp3')
         showFakeProgress.value = false
         isShuttingDown.value = false
         shutdownMessages.value = []
