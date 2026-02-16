@@ -10,6 +10,7 @@ export const help: Command = {
             formatCommand('contact', 'Get in touch — view email and social links'),
             formatCommand('cv', 'Download my resume (PDF)'),
             formatCommand('experiences', 'Show work experiences'),
+            formatCommand('github', 'Show my latest GitHub repositories and projects'),
             formatCommand('skills', 'List technical skills'),
             '',
             'System:',
