@@ -23,6 +23,7 @@ import {ascii} from "~/utils/commands/ascii";
 import {uppercase} from "~/utils/commands/uppercase";
 import {lowercase} from "~/utils/commands/lowercase";
 import {capitalize} from "~/utils/commands/capitalize";
+import {uuid} from "~/utils/commands/uuid";
 
 export const commands: Record<string, Command> = {
     help,
@@ -50,6 +51,7 @@ export const commands: Record<string, Command> = {
     uppercase,
     lowercase,
     capitalize,
+    uuid,
 }
 
 export const commandNames = Object.keys(commands)

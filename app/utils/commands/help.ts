@@ -30,6 +30,7 @@ export const help: Command = {
             formatCommand('sudo', 'Execute command as admin (if available)'),
             formatCommand('uppercase', 'Convert text to uppercase letters'),
             formatCommand('uptime', 'Show how long the terminal has been running'),
+            formatCommand('uuid', 'Generate a random UUID (version 4)'),
             formatCommand('weather', 'Show current weather for your location'),
             formatCommand('whoami', 'Show current user'),
         ]
