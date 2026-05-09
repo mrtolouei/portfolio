@@ -11,10 +11,10 @@ export const github: Command = {
 <a href="https://github.com/mrtolouei/laravel-math-captcha" target="_blank" class="text-gray-500">-> https://github.com/mrtolouei/laravel-math-captcha</a>`,
             `Laravel Service Health
 <span class="text-gray-400">A Laravel package for monitoring the health of databases, Redis, queues, filesystems, and external HTTP services.</span>
-<a href="https://github.com/mrtolouei/laravel-service-health" target="_blank" class="text-gray-500">-> https://github.com/mrtolouei/laravel-health-monitor</a>`,
+<a href="https://github.com/mrtolouei/laravel-service-health" target="_blank" class="text-gray-500">-> https://github.com/mrtolouei/laravel-service-health</a>`,
             `Laravel Repository
 <span class="text-gray-400">A clean and flexible base repository package for Laravel that simplifies data access, enforces the Repository Pattern, and keeps your application code organized, testable, and maintainable.</span>
-<a href="https://github.com/mrtolouei/laravel-repository" target="_blank" class="text-gray-500">-> https://github.com/mrtolouei/laravel-repo-mate</a>`,
+<a href="https://github.com/mrtolouei/laravel-repository" target="_blank" class="text-gray-500">-> https://github.com/mrtolouei/laravel-repository</a>`,
         ]
         ctx.addOutput(lines.join('\n\n'))
     }
